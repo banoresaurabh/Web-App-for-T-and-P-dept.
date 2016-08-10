@@ -1,0 +1,223 @@
+<?php
+	require "connection.php";
+?>
+
+
+
+
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>About - Music School Website Template</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel= "stylesheet" href = "css/bootstrap.css">
+</head>
+<body>
+	<div class="page">
+		<div class="header">
+			<a href="index.html" id="logo"><img src="images/logo.png" alt="logo"></a>
+			<ul class="navigation">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li class="selected">
+					<a href="about.html">About</a>
+				</li>
+				<li>
+					<a href="programs.html">Programs and Fees</a>
+				</li>
+				<li>
+					<a href="blog.html">Blog</a>
+				</li>
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+			</ul>
+		</div>
+		<div class="body">
+				<form class="form-horizontal" action='' method="POST">
+				  <fieldset>
+						<div id="legend">
+						  <legend class="">Register</legend>
+						</div>
+						<div class="control-group">
+						  <!-- Username -->
+						  <label class="control-label"  for="username">First Name</label>
+						  <div class="controls">
+							<input type="text" id="username" name="first_name" placeholder="" class="input-xlarge">
+							 <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+						  </div>
+						</div>
+					 
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label">Father's Name</label>
+						  <div class="controls">
+							<input type="text"  name="middle_name" placeholder="" class="input-xlarge">
+							<p class="help-block">Please provide your E-mail</p>
+						  </div>
+						</div>
+						
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label" >Last Name</label>
+						  <div class="controls">
+							<input type="text"  name="last_name" placeholder="" class="input-xlarge">
+							<p class="help-block">Please provide your E-mail</p>
+						  </div>
+						</div>
+						
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label">Mother's Name</label>
+						  <div class="controls">
+							<input type="text" name="mother_name" placeholder="" class="input-xlarge">
+							<p class="help-block">Please provide your E-mail</p>
+						  </div>
+						</div>
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label">Date of Birth</label>
+						  <div class="controls">
+							<input type="date" name="dob" placeholder="" class="input-xlarge">
+						  </div>
+						</div>
+						
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label" for="email">Year</label>
+						  <div class="controls">
+							<select name="year" placeholder="" class="input-xlarge">
+								<option >--Select--</option>
+								<option>Second Year</option>
+								<option>Third Year</option>
+								<option>Fourth Year</option>
+							</select>
+							<p class="help-block">Please provide your E-mail</p>
+						  </div>
+						</div>
+						
+						
+						<div class="control-group">
+						  <label class="control-label">Branch</label>
+						  <div class="controls">
+							<select class="element select medium" id="element_3" name="branch"> 
+								<option value="" selected="selected">Select Branch</option>
+								<option value="civ" >CIVIL</option>
+								<option value="mech" >MECHANICAL</option>
+								<option value="cse" >CSE</option>
+								<option value="it" >IT</option>
+								<option value="chem" >CHEMICAL</option>
+								<option value="bio" >BIOTECH</option>
+								<option value="ect" >E&TC </option>
+								<option value="eep" >EEP</option>
+								<option value="inst" >INSTRUMENTATION</option>
+								<option value="mca" >MCA</option>
+								<option value= "architecture">Architecture</option>
+							</select>
+						  </div>
+						</div>
+						
+						<div class="control-group">
+						  <label class="control-label">Email</label>
+						  <div class="controls">
+							<input type="email" name="email" placeholder="" class="input-xlarge">
+						  </div>
+						</div>
+					 
+						<div class="control-group">
+						  <label class="control-label" for="password">Password</label>
+						  <div class="controls">
+							<input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+							<p class="help-block">Password should be at least 4 characters</p>
+						  </div>
+						</div>
+					 
+						<div class="control-group">
+						  <!-- Password -->
+						  <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+						  <div class="controls">
+							<input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+							<p class="help-block">Please confirm password</p>
+						  </div>
+						</div>
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label">Contact number</label>
+						  <div class="controls">
+							<input type="number" name="dob" placeholder="" class="input-xlarge">
+						  </div>
+						</div>
+						
+						
+						<div class="control-group">
+						  <!-- E-mail -->
+						  <label class="control-label">Permanent address</label>
+						  <div class="controls">
+							<textarea name="add" placeholder="" class="input-xlarge"></textarea>
+						  </div>
+						</div>
+					 
+						
+					 
+						<div class="control-group">
+						  <!-- Button -->
+						  <div class="controls">
+							<button class="btn btn-success">Register</button>
+						  </div>
+						</div>
+					  </fieldset>
+				</form>
+		</div>
+		<div class="footer">
+			<div class="about">
+				<h3>About</h3>
+				<div>
+					<a href="about.html"><img src="images/instructors.jpg" alt=""></a>
+					<p>
+						This is just a place holder. You can replace all this text with your own text. You're free to use this website template.
+					</p>
+					<a href="blog.html" class="more">(more)</a>
+				</div>
+			</div>
+			<div class="contact">
+				<h3>Contact</h3>
+				<ul>
+					<li>
+						<span>Location :</span>
+						<p>
+							126-U This is just a place holder, so you can see
+							what the site would look like.
+						</p>
+					</li>
+					<li>
+						<span>Email :</span>
+						<p>
+							<a href="http://www.freewebsitetemplates.com/misc/contact">contact@freewebsitetemplates.com</a>
+						</p>
+					</li>
+					<li>
+						<span>Phone :</span>
+						<p>
+							(000) 987 65 43 2100
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="connect">
+				<a href="http://freewebsitetemplates.com/go/twitter/" id="twitter">twitter</a> <a href="http://freewebsitetemplates.com/go/facebook/" id="facebook">facebook</a> <a href="http://freewebsitetemplates.com/go/googleplus/" id="googleplus">google+</a>
+			</div>
+			<p class="footnote">
+				&#169; Copyright 2012. All rights reserved
+			</p>
+		</div>
+	</div>
+</body>
+</html>
