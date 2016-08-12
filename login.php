@@ -36,8 +36,14 @@ if(!loggedin())
 					$id = $row['id'];
 					$br = $row['branch'];
 					$brE = encrypto($br);
+					$query = " SELECT `first_name`,`last_name` FROM $br WHERE `email` = '$newUID' ";
+					$result = mysqli_query($conn,$query);
+					$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 					$_SESSION['id'] = $id;
 					$_SESSION['br'] = $brE;
+					$_SESSION['first_name'] = $row['first_name'];
+					$_SESSION['last_name'] = $row['last_name'];
+
 					header('LOCATION:profile.php?uno='.$id.'&dos='.$brE);
 				}
 				else

@@ -15,9 +15,9 @@
 					$id = $_SESSION['id'];
 					$brE = $_SESSION['br'];
 
-					echo "<li><a href='profile.php?uno=$id&dos=$brE'>Profile</a></li>";
-					$fname = $_SESSION['fname'];
-					$lname = $_SESSION['lname'];
+					echo "<li id='pro'><a href='profile.php?uno=$id&dos=$brE'>Profile</a></li>";
+					$fname = $_SESSION['first_name'];
+					$lname = $_SESSION['last_name'];
 					echo "
 						<div class='pull-right'>
 							<div class='col-md-6' style='border-right:2px solid grey'>

@@ -1,6 +1,7 @@
 <?php
 	require "core.inc.php";
 	require "navbar.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +100,7 @@
 								<label style="margin-right:2%;">above 55% <input type="radio" class="commSSC" name="tenth" value="55"></label>
 								<label style="margin-right:2%;">above 60% <input type="radio" class="commSSC" name="tenth" value="60"></label>
 								<label style="margin-right:2%;">above 66% <input type="radio" class="commSSC" name="tenth" value="66"></label>
-								<label style="margin-right:2%;">Other <input type="radio" class="commSSC" name="tenth" id="radioSSC"></label>
+								<label style="margin-right:2%;">Other <input type="radio" class="commSSC" name="tenth" id="radioSSC" value="other"></label>
 								<br/>
 								<br/>
 								<input type="text" name="otherSSC" class="form-control" id="textSSC" style="display:none;" placeholder="Enter percentages ">
@@ -111,7 +112,7 @@
 								<label style="margin-right:2%;">above 55% <input type="radio" class="commHSC" name="hsc" value="55"></label>
 								<label style="margin-right:2%;">above 60% <input type="radio" class="commHSC" name="hsc" value="60"></label>
 								<label style="margin-right:2%;">above 66% <input type="radio" class="commHSC" name="hsc" value="66"></label>
-								<label style="margin-right:2%;">Other <input type="radio" class="commHSC" name="hsc" id="radioHSC"></label>
+								<label style="margin-right:2%;">Other <input type="radio" class="commHSC" name="hsc" id="radioHSC" value="other"></label>
 								<br/><br/>
 								<input type="text" name="otherHSC" class="form-control" id="textHSC" style="display:none;" placeholder="Enter percentages ">
 							</div>
@@ -122,7 +123,7 @@
 								<label style="margin-right:2%;">above 55% <input type="radio" class="commDIP" name="deploma" value="55"></label>
 								<label style="margin-right:2%;">above 60% <input type="radio"  class="commDIP" name="deploma" value="60"></label>
 								<label style="margin-right:2%;">above 66% <input type="radio" class="commDIP" name="deploma" value="66"></label>
-								<label style="margin-right:2%;">Other <input type="radio" class="commDIP" name="deploma" id="radioDeploma"></label>
+								<label style="margin-right:2%;">Other <input type="radio" class="commDIP" name="deploma" id="radioDeploma" value="other"></label>
 								<br/><br/>
 								<input type="text" name="otherDeploma" class="form-control" id="textDeploma" style="display:none;" placeholder="Enter percentages ">
 							</div>
@@ -132,14 +133,14 @@
 								<label style="margin-right:2%;">above 55% <input type="radio" class="commENG" name="engg" value="55"></label>
 								<label style="margin-right:2%;">above 60% <input type="radio" class="commENG" name="engg" value="60"></label>
 								<label style="margin-right:2%;">above 66% <input type="radio" class="commENG"  name="engg" value="66"></label>
-								<label style="margin-right:2%;">Other <input type="radio" class="commENG" name="engg" id="radioEngg"></label>
+								<label style="margin-right:2%;">Other <input type="radio" class="commENG" name="engg" id="radioEngg" value="other"></label>
 								<br/><br/>
 								<input type="text" name="otherEngg" class="form-control" id="textEngg" style="display:none;" placeholder="Enter percentages ">
 							</div>
 							
 							<div class="form-group">
 								<label style="margin-left:3%; margin-right:3%;"><kbd>Year gap allowed?: </kbd></label>
-								<label style="margin-right:2%;">Yes <input type="radio"  name="yearGap" value="yes"></label>
+								<label style="margin-right:2%;">Yes <input type="radio"  name="yearGap" value="yes" checked="checked"></label>
 								<label style="margin-right:2%;">No<input type="radio"  name="yearGap" value="no"></label>
 							</div>
 							<hr/>

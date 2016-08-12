@@ -1,15 +1,13 @@
 <?php
+
 	require "core.inc.php";
 	require "connection.php";
-if(isset($_SESSION['id']) && isset($_SESSION['br']))
-{
-	if(isset($_GET['uno']) && isset($_GET['dos']))
-	{
-
 	function encrypto($data){
 		$arr = array("3090"=>'BIOTECH',"3091"=>'CHEMICAL',"3092"=>'CIVIL',"3093"=>'CSE',"3094"=>'E&TC',"3095"=>'EEP',"3096"=>'INSTRUMENTATION',"3097"=>'IT',"3098"=>'MECHANICAL');
 		return $arr[$data];
 	}
+
+
 
 	function test_data($data)
 	{
@@ -20,19 +18,22 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 		return $data;
 	}
 
-	
-	$id = test_data($_GET['uno']);
-	$br = encrypto(test_data($_GET['dos']));
-	$idTerm = "id_".strtolower($br);
-	$query = "SELECT * FROM `$br` WHERE `$idTerm` = '$id'";
-	$query2 = "SELECT `email` FROM `login-table` WHERE `id` = '$id'";
-	if($result = mysqli_query($conn,$query))
+if(isset($_SESSION['id']) && isset($_SESSION['br']))
+{
+	if(isset($_GET['uno']) && isset($_GET['dos']))
 	{
-		$resultEmail = mysqli_query($conn,$query2);
-		$row2 = mysqli_fetch_array($resultEmail,MYSQLI_ASSOC); 
+
+		$id = test_data($_GET['uno']);
+		$br = encrypto(test_data($_GET['dos']));
+		$idTerm = "id_".strtolower($br);
+		$query = "SELECT * FROM `$br` WHERE `$idTerm` = '$id'";
+		$result = mysqli_query($conn,$query);		
+	//$query2 = "SELECT `email` FROM `login-table` WHERE `id` = '$id'";
+	if(mysqli_num_rows($result) == 0)
+	{	
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$first_name = $row['first_name'];
-		$email = $row2['email'];
+		$email = $row['email'];
 		$last_name = $row['last_name'];
 		$middle_name = $row['middle_name'];
 		$regID = $row['regid'];
@@ -52,17 +53,18 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 		$sem4 = $row['sem4M'];
 		$sem5 = $row['sem5M'];
 		$sem6 = $row['sem6M'];
-		$placed = $row['placed'];
-		$_SESSION['fname'] = $first_name;
-		$_SESSION['lname'] = $last_name;
-
+		$extra = $row['extra-curri'];
+		$co = $row['co-curri'];
+		$aggreFirst = $row['aggreFirst'];
+		$aggreSecond = $row['aggreSecond'];
+		$aggreThird = $row['aggreThird'];
+		$placed = $row['placed'];		
 	}
 	else
 	{
-		echo mysqli_error($conn);
 ?>
 					<script type="text/javascript">
-						alert("Some error occurred please report at banoresaurabh@gmail.com");
+						window.location = "404.html";
 					</script>
 <?php
 	}
@@ -87,6 +89,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 			font-family: 'Open Sans', sans-serif;
 		}
 	</style>
+	<script>
+		document.getElementById('pro').className = "active";
+	</script>
 </head>
 
 
@@ -163,8 +168,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 				  <thead>
 				    <tr>
 				      <th>#</th>
-				      <th class="forFont">Semester</th>
-				      <th class="forFont">Marks</th>
+				      <th class="forFont ">Semester</th>
+				      <th class="forFont">Percentage</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -178,6 +183,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 				      <td class="forFont">Sem 2</td>
 				      <td class="forFont"><?php if($sem2 != "-1.00") echo $sem2." %"; else echo "NA"; ?></td>
 				    </tr>
+				     <tr >
+				      <th scope="row"></th>
+				      <td class="forFont text-info"><b>Aggregate</b></td>
+				      <td class="forFont text-info"><b><?php if($aggreFirst != "-1.00") echo $aggreFirst." %"; else echo "NA"; ?></b></td>
+				    </tr>
+				    <br/>
 				    <tr>
 				      <th scope="row" class="forFont">3</th>
 				      <td class="forFont">Sem 3</td>
@@ -191,6 +202,12 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 				    </tr>
 
 				    <tr>
+				      <th scope="row"></th>
+				      <td class="forFont text-info"><b>Aggregate</b></td>
+				      <td class="forFont text-info"><b><?php if($aggreSecond != "-1.00") echo $aggreSecond." %"; else echo "NA"; ?></b></td>
+				    </tr>
+
+				    <tr>
 				      <th scope="row">5</th>
 				      <td class="forFont">Sem 5</td>
 				      <td class="forFont"><?php if($sem5 != "-1.00") echo $sem5." %"; else echo "NA"; ?></td>
@@ -201,8 +218,23 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 				      <td class="forFont">Sem 6</td>
 				      <td class="forFont"><?php if($sem6 != "-1.00") echo $sem6." %"; else echo "NA"; ?></td>
 				    </tr>
+
+				    <tr>
+				      <th scope="row"></th>
+				      <td class="forFont text-info"><b>Aggregate</b></td>
+				      <td class="forFont text-info"><b><?php if($aggreThird!= "-1.00") echo $aggreThird." %"; else echo "NA"; ?></b></td>
+				    </tr>
 				  </tbody>
 				</table>
+				<hr/>
+				<div class="e-and-c" style="margin-top:2em; margin-bottom:;">
+					<h3 class="text text-primary ">Miscellaneous </h3>
+					<span class="text-muted">Extra curricular</span><br/>
+					<span class="forFont"><?php echo $extra ?> </span><br/>
+					<span class="text-muted">Co curricular</span> <br/>
+					<span class="forFont"><?php echo $co ?> </span>
+				</div>
+				<br/> <br/> <br/>
 			</div>	
 		</div>	
 		</div>
