@@ -1,7 +1,8 @@
 <?php
 	require "core.inc.php";
+if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
+{
 	require "navbar.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,7 @@
 
 							<div class="form-group" >
 								<div class="col-md-4">
-									<input type="text" name="fname" class="form-control" placeholder="Last name" />
+									<input type="text" name="lname" class="form-control" placeholder="Last name" />
 								</div>
 							</div>
 
@@ -164,3 +165,10 @@
 	</div>
 </body>
 </html>
+<?php
+	}
+	else
+	{
+		header('Location:admin-login.php');
+	}
+?>

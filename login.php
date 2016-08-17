@@ -1,6 +1,5 @@
 <?php
 	require "core.inc.php";
-
 if(!loggedin())
 {
 	function encrypto($data){
@@ -43,7 +42,6 @@ if(!loggedin())
 					$_SESSION['br'] = $brE;
 					$_SESSION['first_name'] = $row['first_name'];
 					$_SESSION['last_name'] = $row['last_name'];
-
 					header('LOCATION:profile.php?uno='.$id.'&dos='.$brE);
 				}
 				else

@@ -36,8 +36,12 @@
 	<div class="well col-md-8" style="height:500px;margin-top:1em;width:68%;margin-right:1em;background-color:white;">
 
 	</div>
-	<div class="well col-md-3" style="height:500px;width:30%;margin-top:1em;background-color:white;">
 
+	<div class="well col-md-3" style="height:500px;width:30%;margin-top:1em;background-color:white;">
+		<div class="panel panel-primary">
+			<div class="panel-heading">23rd of December</div>
+			<div class="panel-body">TCS(Tata Counceltency services) is coming to our college on 23rd for campus placements.<a>Read more</a></div>
+		</div>
 	</div>				
 
 	<div class="well col-md-5" style="height:200px;margin-top:0.8em; width:49%; background-color:white;">

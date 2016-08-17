@@ -1,13 +1,11 @@
 <?php
-
 	require "core.inc.php";
 	require "connection.php";
+
 	function encrypto($data){
 		$arr = array("3090"=>'BIOTECH',"3091"=>'CHEMICAL',"3092"=>'CIVIL',"3093"=>'CSE',"3094"=>'E&TC',"3095"=>'EEP',"3096"=>'INSTRUMENTATION',"3097"=>'IT',"3098"=>'MECHANICAL');
 		return $arr[$data];
 	}
-
-
 
 	function test_data($data)
 	{
@@ -18,18 +16,22 @@
 		return $data;
 	}
 
-if(isset($_SESSION['id']) && isset($_SESSION['br']))
+if(loggedin() or adminloggedin())
 {
 	if(isset($_GET['uno']) && isset($_GET['dos']))
 	{
-
-		$id = test_data($_GET['uno']);
-		$br = encrypto(test_data($_GET['dos']));
-		$idTerm = "id_".strtolower($br);
-		$query = "SELECT * FROM `$br` WHERE `$idTerm` = '$id'";
-		$result = mysqli_query($conn,$query);		
+		if(adminloggedin() || $_SESSION['id'] == $_GET['uno'])
+		{
+			$id = $_GET['uno'];
+			$br = encrypto($_GET['dos']);
+			
+			$idTerm = "id_".strtolower($br);
+			$query = "SELECT * FROM $br WHERE $idTerm = '$id'";
+			$result = mysqli_query($conn,$query);
+			
+				
 	//$query2 = "SELECT `email` FROM `login-table` WHERE `id` = '$id'";
-	if(mysqli_num_rows($result) == 0)
+	if(mysqli_num_rows($result) == 1)
 	{	
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$first_name = $row['first_name'];
@@ -64,7 +66,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 	{
 ?>
 					<script type="text/javascript">
-						window.location = "404.html";
+						//window.location = "404.html";
 					</script>
 <?php
 	}
@@ -102,7 +104,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 		
 		<div class="list-group col-md-3" style="margin-right:0em;">
 			<a href="admin-profile.php" class="list-group-item active">My profile</a>
-			<a href="admin-profile.php" class="list-group-item ">Update profile</a>
+			<a href="update-pro.php" class="list-group-item ">Update profile</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
 			<a href="logout.php" class="list-group-item ">Logout</a>
 		</div>
@@ -252,6 +254,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['br']))
 </body>
 </html>
 <?php
+	}else
+	{
+		header('Location:404.php');
+	}
 }
 	else
 	{

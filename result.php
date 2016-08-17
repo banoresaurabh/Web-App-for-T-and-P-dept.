@@ -42,16 +42,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 							$brDos = encrypto($branch);
 							$query="";
 							if(	isset($_POST['regID']))	$regID = $_POST['regID'];				if( !empty($regID))	$query = $query." `regID` = '".$regID."' AND";
-							if(	isset($_POST['first_name']))	$first_name = $_POST['first_name'];			if( !empty($first_name))	$query = $query." `first_name` = '".$first_name."' AND";
-							if( isset($_POST['last_name'])) 	$last_name = $_POST['last_name'];				if(!empty($last_name) )		$query = $query." `last_name` = '".$last_name."' AND";
+							if(	isset($_POST['fname']))	$first_name = $_POST['fname'];			if( !empty($first_name))	$query = $query." `first_name` = '".$first_name."' AND";
+							if( isset($_POST['lname'])) 	$last_name = $_POST['lname'];				if(!empty($last_name) )		$query = $query." `last_name` = '".$last_name."' AND";
 							if( isset($_POST['className']))		$className = $_POST['className'];						if(!empty($className) )		$query = $query." `className` = '".$className."' AND";
 							if( isset($_POST['classNum']))			$classNum = $_POST['classNum'];						if(!empty($classNum) )			$query = $query." `classNum` = '".$classNum."' AND";
-							if( isset($_POST['tenth']) && $_POST['tenth'] != "other"){
+							if(isset($_POST['tenth']) && $_POST['tenth'] != "other"){
 								$tenth = $_POST['tenth'];
 								if(!empty($tenth))
 									$query = $query." `tenth` >= '".$tenth."' AND";
-							}elseif (isset($_POST['tenth']) && $_POST['tenth'] == "other" && !empty($_POST['tenth'])) {
-								$tenth = $_POST['tenth'];
+							}elseif (isset($_POST['tenth']) && $_POST['tenth'] == "other" && !empty($_POST['otherSSC'])) {
+								$tenth = $_POST['otherSSC'];
 								$query = $query." `tenth` >= '".$tenth."' AND";
 							}	
 
@@ -60,8 +60,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 								$hsc = $_POST['hsc'];
 								if(!empty($hsc))
 									$query = $query." `hsc` >= '".$hsc."' AND";
-							}elseif (isset($_POST['hsc']) && $_POST['hsc'] == "other" && !empty($_POST['hsc'])) {
-								$hsc = $_POST['hsc'];
+							}elseif (isset($_POST['hsc']) && $_POST['hsc'] == "other" && !empty($_POST['otherHSC'])) {
+								$hsc = $_POST['otherHSC'];
 								$query = $query." `twelthM` >= '".$hsc."' AND";
 							}
 
@@ -71,8 +71,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 								$deploma = $_POST['deploma'];
 								if(!empty($deploma))
 									$query = $query." `deploma` >= '".$deploma."' AND";
-							}elseif (isset($_POST['deploma']) && $_POST['deploma'] == "other" && !empty($_POST['deploma'])) {
-								$deploma = $_POST['deploma'];
+							}elseif (isset($_POST['deploma']) && $_POST['deploma'] == "other" && !empty($_POST['otherDeploma'])) {
+								$deploma = $_POST['otherDeploma'];
 								$query = $query." `deplomaM` >= '".$deploma."' AND";
 							}
 
@@ -90,7 +90,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 		*/
 
 							
-							if(isset($_POST['yearGap'])){
+							if(isset($_POST['yearGap']))
+							{
 								if($_POST['yearGap'] == "no"){
 									$query = $query." `gap` = '-1' AND";
 								}
@@ -103,7 +104,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 							}
 							
 							
-							$queryis= "SELECT * FROM $branch WHERE"; 
+							$queryis= "SELECT * FROM $branch WHERE "; 
 							$query=$query.' 1';
 							
 							$queryis=$queryis.$query;

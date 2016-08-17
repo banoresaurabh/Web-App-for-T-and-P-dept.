@@ -12,4 +12,15 @@ require "connection.php";
             return 0;
         }
     }
+
+    function adminloggedin(){
+        if( isset($_SESSION['email']) && isset($_SESSION['branchM']))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 ?>	

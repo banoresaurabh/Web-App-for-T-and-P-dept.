@@ -7,17 +7,17 @@
 			<ul class="nav nav-pills ">
 			<li id="home"><a href="index.php">Home</a></li>
 			<?php 
-				if(!loggedin()){
+				if(!loggedin() && !adminloggedin()){
 					echo "<li><a href='register.php'>Register</a></li>";
 					echo "<li><a href='login.php'>Login</a></li>";
 				}
-				if(loggedin()){
-					$id = $_SESSION['id'];
-					$brE = $_SESSION['br'];
+				if(loggedin() || adminloggedin()){
 
-					echo "<li id='pro'><a href='profile.php?uno=$id&dos=$brE'>Profile</a></li>";
+					if(loggedin())
+						echo "<li id='pro'><a href='profile.php?uno=$id&dos=$brE'>Profile</a></li>";
+					if(adminloggedin())
+						echo "<li id='pro'><a href='admin-profile.php'>Search</a></li>";
 					$fname = $_SESSION['first_name'];
-					$lname = $_SESSION['last_name'];
 					echo "
 						<div class='pull-right'>
 							<div class='col-md-6' style='border-right:2px solid grey'>

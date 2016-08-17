@@ -14,6 +14,7 @@
 	}
 */
 //---------------------------------------------------------------------------------------------------------------------//
+
 	function test_data($data){
 		$data = trim($data);
 		//$data = mysqli_real_escape_string($conn,$data);
@@ -22,27 +23,30 @@
 		return $data;
 	}
 	
-	if(isset($_POST['sbt-btn'])){
-		$first_name = test_data($_POST['first_name']);$last_name = test_data($_POST['last_name']); 
-		$middle_name = test_data($_POST['middle_name']); 
-		if(isset($_POST['gender']))
-			$gender = test_data($_POST['gender']);
-		$dob = test_data($_POST['dob']); $regId = test_data($_POST['regId']);
-		if(isset($_POST['adyear']))
-			$adyear = test_data($_POST['adyear']); 
-		if(isset($_POST['branch']))
-			$branch = test_data($_POST['branch']);
-		if(isset($_POST['year']))
-			$year=test_data($_POST['year']); 
-		$className = test_data($_POST['hiddenInp']); 
-		$classNum = test_data($_POST['classNum']);$tenth=test_data($_POST['tenth']); 
+if(loggedin()){
+
+		$id = $_SESSION['id'];
+		$branch = $_SESSION['br'];
+		$query = "SELECT * from $branch";
+		
+		$result = mysqli_query($conn,$query);
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+		$first_name = $row['first_name'];$last_name = $row['last_name']; 
+		$middle_name = $row['middle_name']; 
+		$gender = $row['gender'];
+		$dob = $row['dob']; $regId = $row['regId'];
+		$adyear = $row['adyear']; 
+		$year=$row['year']; 
+		$className = $row['className']; 
+		$classNum = $row['classNum'];$tenth=$row['tenth']; 
 		if(isset($_POST['twelthM']))
-			$twelth=test_data($_POST['twelthM']);
+			$twelth=$row['twelthM'];
 		if(isset($_POST['deplomaM']))
-			$deploma = test_data($_POST['deplomaM']); 
-		$email = test_data($_POST['email']);$password = test_data($_POST['password']);
-		$password_confirm = test_data($_POST['password_confirm']);$contact = test_data($_POST['contact']); 
-		$add = test_data($_POST['add']);  
+			$deploma = $row['deplomaM']; 
+		$email = $row['email'];
+		$contact = $row['contact'] 
+		$add = $row['add'];  
 		$sem1=test_data($_POST['sem1']); $sem2=test_data($_POST['sem2']);
 		$sem3=test_data($_POST['sem3']); $sem4=test_data($_POST['sem4']); $sem5=test_data($_POST['sem5']); $sem6=test_data($_POST['sem6']); 
 		$eCurri = test_data($_POST['eCurri']);
@@ -181,6 +185,7 @@
 														$queryForInsertion = "INSERT INTO `login-table` (email,pass,branch,id) VALUES('$email','$password','$branch','$id')";
 														if($result = mysqli_query($conn,$queryForInsertion))
 														{
+}
 
 ?>
 															<script>
@@ -292,7 +297,7 @@
 			</script>
 <?php
 		}
-	}
+	
 	require "navbar.php";
 ?>
 
@@ -332,7 +337,7 @@
 </head>
 <body style="background-color:#f5f5f5">
 <div id="legend" style="text-align:center">
-	<legend class="alert alert-success">Register yourself</legend>
+	<legend class="alert alert-success">Update profile</legend>
 </div>
 	<div class="page">
 		
@@ -410,7 +415,7 @@
 						  <div class="col-md-6">
 							<label class="control-label">Admission Year</label>
 							<select name="adyear" class="form-control"  >
-								<option selected="selected" value="" disabled selected> --Select Year-- </option>
+								<option selected="selected" value="<?php if(isset($_POST['adyear'])) echo $_POST['adyear'];?>" disabled selected> --Select Year-- </option>
 								<option value="2010-11">2010-11</option>
 								<option value="2011-12">2011-12</option>
 								<option value="2012-13">2012-13</option>
@@ -425,7 +430,7 @@
 						  <div class="col-md-6">
 							<label class="control-label">Branch</label>
 							<select class="form-control" id="element_3" name="branch"> 
-								<option  selected="selected" value="" disabled selected>--Select branch-- </option>
+								<option  selected="selected" value="<?php if(isset($_POST['branch'])) echo $_POST['branch'];?>" disabled selected>--Select branch-- </option>
 								<option value="CIVIL" >CIVIL</option>
 								<option value="MECHANICAL" >MECHANICAL</option>
 								<option value="CSE" >CSE</option>
@@ -447,7 +452,7 @@
 						  <div class="col-md-6">
 						  <label class="control-label">Year</label>
 							<select name="year"  id="yearID"  class="form-control" onchange='num_fields(this.value);'>
-								<option  selected="selected" value="0" disabled selected> --Select Year-- </option>
+								<option  selected="selected" value="<?php if(isset($_POST['year'])) echo $_POST['year'];else echo "0"; ?> " disabled selected> --Select Year-- </option>
 								<option value="1">2nd</option>
 								<option value="2">3rd</option>
 								<option value="3">4th</option>
@@ -471,9 +476,9 @@
 						  <div class="col-md-6">
 						  <label class="control-label">Class</label>
 						  <div id="autoGenerateClass"  class="bg-danger"></div>
-						  <input type="hidden" id="hiddenInpID" name="hiddenInp">
+						  <input type="hidden" id="hiddenInpID" name="hiddenInp" value="<?php if(isset($_POST['hiddenInp'])) echo $_POST['hiddenInp'];?>">
 							<select name="classNum" class="form-control" >
-								<option  selected="selected" value=""> --Select Division-- </option>
+								<option  selected="selected" value="<?php if(isset($_POST['classNum'])) echo $_POST['classNum'];?>"> --Select Division-- </option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -495,7 +500,7 @@
 						 <div class="form-group" id="gapSelectID" style="display:none">
 						  <div class="col-md-6">
 							<select name="gapSelect"  class="form-control"  >
-								<option selected="selected" value="" disabled selected> --Specify Year of gap-- </option>
+								<option selected="selected" value="<?php if(isset($_POST['gapSelect'])) echo $_POST['gapSelect'];?>" disabled selected> --Specify Year of gap-- </option>
 								<option value="2010-11">2010-11</option>
 								<option value="2011-12">2011-12</option>
 								<option value="2012-13">2012-13</option>
@@ -520,7 +525,7 @@
 						  </div>
 						</div>
 						<div id="twelth-input" style="display:none" >
-							<input type="number" name="twelthM" class="form-control " placeholder = "Enter percentage">
+							<input type="number" step="any" name="twelthM" class="form-control " placeholder = "Enter percentage" value="<?php if(isset($_POST['twelthM'])) echo $_POST['twelthM'];?>"/>
 						</div>
 						<div class="form-group">
 						  <label class="control-label " for="email">Deploma Marks</label>
@@ -529,7 +534,7 @@
 						  </div>
 						</div>
 						<div id="deploma-input"  style="display:none">
-							<input type="number" name="deplomaM" class="form-control" placeholder = "Enter percentage">
+							<input type="number" step="any" name="deplomaM" class="form-control" placeholder = "Enter percentage" value="<?php if(isset($_POST['deplomaM'])) echo $_POST['deplomaM'];?>"/>
 
 						</div>
 	
@@ -547,23 +552,7 @@
 						  </div>
 						</div>
 					 
-						<div class="form-group">
-						  <label class="control-label" for="password">Password</label>
-						  <div class="controls">
-							<input type="password" onchange="divTophp()" class="form-control" id="password" name="password"  placeholder="" class="input-xlarge">
-							<p class="help-block">Password should be at least 6 characters</p>
-						  </div>
-						</div>
-					 
-						<div class="form-group">
-						  <!-- Password -->
-						  <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-						  <div class="controls">
-							<input type="password" class="form-control" id="password_confirm" name="password_confirm"  placeholder="" class="input-xlarge">
-							<p class="help-block">Please confirm password</p>
-						  </div>
-						</div>
-						
+											
 						<div class="form-group">
 						  <label class="control-label">Contact number</label>
 						  <div class="controls">
@@ -594,7 +583,7 @@
 			<div class="form-group ">
 				<label class="control-label">Extra curricular Activities</label>
 					<div class="controls">
-							<textarea name="eCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['eAct'])) echo $_POST['eAct'];?></textarea>
+							<textarea name="eCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['eCurri'])) echo $_POST['eCurri'];?></textarea>
 					</div>
 			</div>		
 
@@ -603,12 +592,12 @@
 			<div class="form-group ">
 				<label class="control-label">Co-curricular Activities</label>
 					<div class="controls">
-							<textarea name="coCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['coAct'])) echo $_POST['coAct'];?></textarea>
+							<textarea name="coCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['coCurri'])) echo $_POST['coCurri'];?><?php if(isset($_POST['coCurri'])) echo $_POST['coCurri'];?></textarea>
 					</div>
 			</div>	
 			<div class="form-group">
 					<div class="controls" style="height:5%">
-				 			<input type="submit" name="sbt-btn" style="height:150%" class="btn btn-lg btn-primary col-md-offset-4 col-md-3" value="Register" />
+				 			<input type="submit" name="sbt-btn" style="height:150%" class="btn btn-lg btn-primary col-md-offset-4 col-md-3" value="Update" />
 					</div>
 			</div>	
 		</div>	
@@ -623,3 +612,9 @@
 	</div>
 </body>
 </html>
+<?php
+}
+else{
+	header('Location:login.php');	
+}
+?>
