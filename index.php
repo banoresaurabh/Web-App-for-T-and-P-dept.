@@ -37,10 +37,22 @@
 
 	</div>
 
-	<div class="well col-md-3" style="height:500px;width:30%;margin-top:1em;background-color:white;">
+	<div class=" col-md-3" style="height:500px;width:30%;margin-top:1em;overflow:hidden;">
 		<div class="panel panel-primary">
-			<div class="panel-heading">23rd of December</div>
-			<div class="panel-body">TCS(Tata Counceltency services) is coming to our college on 23rd for campus placements.<a>Read more</a></div>
+			<div class="panel-heading"><h4><span class="label label-warning">Notifications</span></h4></div>
+			<div class="panel-body">TCS(Tata Counceltancy services) is coming to our college on 23rd for campus drive.<a>Read more</a>
+			<hr/>
+
+			TCS(Tata Counceltancy services) is coming to our college on 23rd for campus drive.<a>Read more</a>
+			<hr/>
+
+			TCS(Tata Counceltancy services) is coming to our college on 23rd for campus drive.<a>Read more</a>
+			<hr/>
+			TCS(Tata Counceltancy services) is coming to our college on 23rd for campus drive.<a>Read more</a>
+			
+			
+
+			</div>
 		</div>
 	</div>				
 
@@ -48,7 +60,12 @@
 
 	</div>
 	<div class="well col-md-5" style="height:200px;margin-top:0.8em;width:49%;margin-left:1.2%;background-color:white;">
-
+		<div><h4 class="text-danger">Contact</h4></div>
+		<hr/>
+		<span class="text-muted"><u>Location</u>:</span> <span class="text-muted">Cidco N-6, Aurangabad 431001</span><br/>
+		<span class="text-muted"><u>Email</u>:</span> <span class="text-muted">banoresaurabh@gmail.com</span><br/>
+		<span class="text-muted"><u>Phone</u>:</span> <span class="text-muted">12345678</span>
+		<hr/>
 	</div>		
 
 

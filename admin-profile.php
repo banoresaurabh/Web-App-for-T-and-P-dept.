@@ -22,6 +22,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 		<div class="list-group col-md-3">
 			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
 			<a href="edit-home.php" class="list-group-item ">Change homepage contents</a>
+			<a href="update-placed.php" class="list-group-item ">Placements</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
 			<a href="logout.php" class="list-group-item ">Logout</a>
 		</div>
@@ -147,7 +148,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 							<hr/>
 							<div class="alert alert-success"> <label style="margin-left:3%; margin-right:3%;">Ignore already placed:&nbsp &nbsp &nbsp<input  type="checkbox"  name="placed" value="true"></label></div>
 
-							<button class="btn btn-danger" name="sbt-btn-admin" col-md-offset-5">Search</button>
+							<button class="btn btn-danger" name="sbt-btn-admin" class="col-md-offset-5">Search</button>
 
 						</form>
 						

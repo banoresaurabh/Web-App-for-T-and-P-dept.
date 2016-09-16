@@ -1,22 +1,33 @@
 <nav class="nav navbar-default " style="background-color:white;">
 			<div class="container-fluid">
 				<div class = "nav navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span>
+        				<span class="icon-bar"></span> 
+     				 </button>
 					<a href="#" class="navbar-brand" style="border: 2px solid grey;border-radius: 5px; margin-right:0.3em;">JNEC T & P</a><span class="label label-warning">Beta</span>				
 				</div>
-			
-			<ul class="nav nav-pills ">
-			<li id="home"><a href="index.php">Home</a></li>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav nav-pills ">
+					<li id="home"><a href="index.php">Home</a></li>
 			<?php 
 				if(!loggedin() && !adminloggedin()){
 					echo "<li><a href='register.php'>Register</a></li>";
-					echo "<li><a href='login.php'>Login</a></li>";
+					echo "<li class='dropdown'>
+							<a  class='dropdown-toggle' data-toggle='dropdown' href='#'>Login<span class='caret'></span></a>
+							<ul class='dropdown-menu'>
+								<li><a href='login.php'>Student Login</a></li>
+								<li><a href='admin-login.php'>Admin Login</a></li>
+							</ul>
+						</li>";
 				}
 				if(loggedin() || adminloggedin()){
 
 					if(loggedin())
 						echo "<li id='pro'><a href='profile.php?uno=$id&dos=$brE'>Profile</a></li>";
 					if(adminloggedin())
-						echo "<li id='pro'><a href='admin-profile.php'>Search</a></li>";
+						echo "<li id='pro'><a href='admin-profile.php'>Dashboard</a></li>";
 					$fname = $_SESSION['first_name'];
 					echo "
 						<div class='pull-right'>
@@ -35,6 +46,7 @@
 			<li id="placed"><a>Placements</a></li>
 			<li id="about"><a>About</a></li>
 			</ul>
+			</div>
 			</div>
 		</nav>
 		

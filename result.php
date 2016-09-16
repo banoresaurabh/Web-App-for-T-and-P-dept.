@@ -108,6 +108,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 							$query=$query.' 1';
 							
 							$queryis=$queryis.$query;
+
+
 							if($query_run = mysqli_query($conn,$queryis))
 							{
 								if(mysqli_num_rows($query_run)==NULL)
@@ -123,6 +125,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 								}
 								else
 								{	
+									$_SESSION['query'] = $queryis;
+									?>
+									<script type="text/javascript"/>
+										function down()
+										{
+											window.location="export.php";
+										}
+										function mail()
+										{
+											window.location="mailer.php";
+										}
+									</script>
+									<div class="page" style="text-align:center;">
+									 	<button onclick="mail()" style="margin-top:1em; margin-left:;" class="btn btn-primary" name="mail">Send emails </button>
+										 <button onclick="down()" style="margin-top:1em; margin-left:;" class="btn btn-primary" name="exp">Import Spreedsheet </button>
+									</div>
+										 <?php
 									
 									$sr = 0;
 									echo "<div class='col-md-offset-2 col-md-8' style='background-color:white;margin-top:5%;'>";
@@ -171,13 +190,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 									$_SESSION['query']=$queryis;
 				?>					
 									
-									<script type="text/javascript"/>
-										function down()
-										{
-											window.location="export.php";
-										}
-										</script>
-										 <button onclick="down()" name="exp">Import Spreedsheet </button>
+									
 			<?php		
 							}
 						}

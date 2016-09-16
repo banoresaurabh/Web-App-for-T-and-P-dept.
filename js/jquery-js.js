@@ -76,17 +76,17 @@ $('.commDIP').click(function(){
 });
 
 $('.commEng').click(function(){
-	if($('#radioEngg').is(':checked') == true){
+	if($('#radioEngg').is(':checked') === true){
 			$('#textEngg').slideDown();
 		}
 
-	if($('#radioEngg').is(':checked') == false){
+	if($('#radioEngg').is(':checked') === false){
 			$('#textEngg').slideUp();
 			
 		}
 });
 
-//-----------------------Year gap----------------------//
+//-----------------------Year gap-----------------------------------//
 
 $('.comm').click(function()
 {
@@ -108,3 +108,11 @@ $(document).ready(function($){
 	});
 });
 
+//---------------------- For taking branch at runtime------------------------//
+
+$(document).ready(function(){
+	$("#comp").change(function(){
+		 compVal = document.getElementById('comp').value;
+		 alert(compVal);
+	});
+});
