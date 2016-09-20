@@ -2,6 +2,7 @@
 		require "core.inc.php";
 	if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 	{
+		$branch = $_SESSION['branchM'];
 
 		function encrypto($data){
 					$arr = array('BIOTECH'=>"3090",'CHEMICAL'=>"3091",'CIVIL'=>"3092",'CSE'=>"3093",'E&TC'=>"3094",'EEP'=>"3095",'INSTRUMENTATION'=>"3096",'IT'=>"3097",'MECHANICAL'=>"3098");
@@ -47,35 +48,38 @@
 								
 								
 								<div class="form-group">
-									<label>Select Branch<sup style="color:red;">*</sup></label>
-									<select class="form-control" name="branch">
-										<option  selected="selected" value="" disabled>--Select branch-- </option>
-										<option value="CIVIL" >CIVIL</option>
-										<option value="MECHANICAL" >MECHANICAL</option>
-										<option value="CSE" >CSE</option>
-										<option value="IT" >IT</option>
-										<option value="CHEMICAL" >CHEMICAL</option>
-										<option value="BIOTECH" >BIOTECH</option>
-										<option value="E&TC" >E&TC </option>
-										<option value="EEP" >EEP</option>
-										<option value="instrumentation" >INSTRUMENTATION</option>
-										<option value="mca" >MCA</option>
-										<option value= "architecture">Architecture</option>
+									<label>Select year<sup style="color:red;">*</sup></label>
+									<select class="form-control" name="className">
+										<option  selected="selected" value="" disabled>--Select Year-- </option>
+										<option value="SE" >SE</option>
+										<option value="TE" >TE</option>
+										<option value="BE" >BE</option>
+									</select>
+								</div>
 
+								<div class="form-group">
+									<label>Select Class<sup style="color:red;">*</sup></label>
+									<select class="form-control" name="classNum">
+										<option  selected="selected" value="" disabled>--Select class-- </option>
+										<option value="1" >1</option>
+										<option value="2" >2</option>
+										<option value="3" >3</option>
+										<option value="4" >4</option>
 									</select>
 								</div>
 
 								
-								<button class="btn btn-danger" name="sbt-btn" col-md-offset-5">Search</button>
+								<button class="btn btn-primary" name="sbt-btn" col-md-offset-5">Search</button>
 								</form>
 								<hr/>
 								<br/>
 								<?php
 
 									if(isset($_POST['sbt-btn'])){
-										if(isset($_POST['branch']) && !empty($_POST['branch'])){
-											$branch = $_POST['branch'];
-											$query = "select * from $branch ";
+										if(isset($_POST['className']) && isset($_POST['classNum']) && !empty($_POST['classNum']) && !empty($_POST['className'])){
+											$className = $_POST['className'];
+											$classNum = $_POST['classNum'];
+											$query = "select * from $branch where classNum = '$classNum' and className = '$className'";
 											if($result = mysqli_query($conn,$query)){
 												
 												$count = mysqli_num_rows($result);
@@ -90,6 +94,7 @@
 													?>
 												
 								<div class="info">
+								<form action="updater.php" method="POST">
 									<table class="table">
 							                <thead>
 							                     <tr>
@@ -124,7 +129,9 @@
 																  <td>'.$last_name.'</td>
 																  <td>'.$classFinal.'</td>
 																  <td> 
-																	  <select id="comp"  class="form-control" name="branch">
+																  <input type="hidden" name="realID[]" value="'.$id.'">
+																  <input type="hidden" name="realFname[]" value="'.$first_name.'">
+																	  <select id="comp" name="compReal[]" class="form-control" >
 																			<option  selected="selected" value="" disabled>--Select Company-- </option>
 																			';
 																			$query = 'select * from company';
@@ -133,14 +140,13 @@
 																			while($compRow = mysqli_fetch_array($compRes,MYSQLI_ASSOC)){
 																				echo '<option value="'.$compRow['cname'].'">'.$compRow['cname'].'</option>';
 																			}
-?>
-<?php
+
 //'.$id.','.$i.',"'.$branch.'",compVal
 																			echo '
 																			
 																		</select>
 																  </td> 
-																  <td><button onclick="process_approve()" class="btn btn-success active" id="greendiv'.$i.'">Update</button></td>
+																  
 															</tr> 
 															<div style="display:none;" class="alert alert-danger" id="result"/>
 															';
@@ -151,7 +157,8 @@
 ?>
 							                          </tbody>
 			                      </table>
-						
+									<button type="submit" class="btn btn-success">Done!!</button>
+									</form>
 									</div>
 <?php
 												}
