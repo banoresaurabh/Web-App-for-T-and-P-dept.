@@ -2,6 +2,7 @@
 	require "core.inc.php";
 	if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 	{
+<<<<<<< HEAD
 		$branch = $_SESSION['branchM'];
 
 		if(isset($_POST['compReal']) && count($_POST['compReal']) > 0){
@@ -70,8 +71,26 @@
 					location.href = "update-placed.php"
 				</script>
 			<?php
+=======
+		$numberName = count($_POST["name"]);
+		$numberComp = count($_POST["comp"]);
+		if($numberName > 1 && $numberComp > 1){
+			for($i = 0; $ $i < $numberName; $i++){
+				if(trim($_POST["name"][$i]) != ''){
+
+				}else{
+					
+				}
+			}
+		}else{
+			echo "Please Enter the name "
+>>>>>>> master
 		}
 	}else{
 		header('Location:404.html');
 	}
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> master

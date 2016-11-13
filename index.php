@@ -32,7 +32,17 @@
 		// Set a callback to run when the Google Visualization API is loaded.
 		google.charts.setOnLoadCallback(drawCompanyWiseChart);
 		google.charts.setOnLoadCallback(drawBranchWiseChart);
-
+		notifier();
+		function notifier(){
+			$.ajax({
+				url:'notifSender.php',
+				type:'POST',
+				async:true,
+				success:function(theSimpleResponse){
+					document.getElementById('notifications').innerHTML = theSimpleResponse;
+				}
+			});
+		}
 		// Callback that creates and populates a data table,
 		// instantiates the pie chart, passes in the data and
 		// draws it.
@@ -163,6 +173,9 @@
     				<img class="pull-right" height="50px" width="30px" style="margin-top:90%;" src="images/right.png"/>
   				</a>
 		</div>
+		<div class="alert alert-success" style="margin-bottom:0em;">
+			<marquee id="notifications" style="font-family: 'Open Sans', sans-serif;"> </marquee>
+		</div>
 	<div class="page">
 		<div class="module">
 			<div style="background-color:#7DC57C; margin-top:0em; height:5em; padding-top:0.1em; text-align:center;" class="theHeader">
@@ -179,7 +192,7 @@ Unique in its structure, methods and goals, the college is strongly rooted in th
 		</div>
 
 		<div class="module">
-			<div style="background-color:#7DC57C; margin-top:0em; height:5em; padding-top:0.1em; text-align:center;" class="theHeader">
+			<div style="background-color:#7DC57C; margin-top:0.8em; height:5em; padding-top:0.1em; text-align:center;" class="theHeader">
 				<h2 style="font-family:branchFont">Placement statistics</h2>
 			</div>
 			<div class="dataForModule"  style="background-color:white;" >

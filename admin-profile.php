@@ -16,12 +16,13 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 <body style="background-color:#f5f5f5" >
 	<div class="page">
-		
+
 		<div class="body" style="margin-top:2%;">
-		
+
 		<div class="list-group col-md-3">
 			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
-			<a href="edit-home.php" class="list-group-item ">Change homepage contents</a>
+			<a href="manageNotifs.php" class="list-group-item ">Manage nofications</a>
+      <a href="comp-list.php" class="list-group-item ">Update company list</a>
 			<a href="update-placed.php" class="list-group-item ">Placements</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
 			<a href="logout.php" class="list-group-item ">Logout</a>
@@ -34,7 +35,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 				</div>
 
 				<div class="panel-body">
-					
+
 						<form action="result.php" method="post">
 							<div class="form-group">
 								<div class="col-md-3">
@@ -139,7 +140,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 								<br/><br/>
 								<input type="text" name="otherEngg" class="form-control" id="textEngg" style="display:none;" placeholder="Enter percentages ">
 							</div>
-							
+
 							<div class="form-group">
 								<label style="margin-left:3%; margin-right:3%;"><kbd>Year gap allowed?: </kbd></label>
 								<label style="margin-right:2%;">Yes <input type="radio"  name="yearGap" value="yes" checked="checked"></label>
@@ -151,15 +152,15 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 							<button class="btn btn-danger" name="sbt-btn-admin" class="col-md-offset-5">Search</button>
 
 						</form>
-						
-				</div>	
-				
+
+				</div>
+
 			</div>
 		</div>
-		<!----------------------------------------------Footer------------------------------------------------------------>		
+		<!----------------------------------------------Footer------------------------------------------------------------>
 
 		<div class="footer">
-					
+
 			<script type="text/javascript" src="js/jquery.js"></script>
 			<script type="text/javascript" src="js/jquery-js.js"></script>
 		</div>

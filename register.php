@@ -2,7 +2,7 @@
 	require "core.inc.php";
 //-----------------------------------The goddamn connection ----------------------------------------------------------//
 /*
-	
+
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
@@ -21,48 +21,48 @@
 		$data = stripcslashes($data);
 		return $data;
 	}
-	
+
 	if(isset($_POST['sbt-btn'])){
-		$first_name = test_data($_POST['first_name']);$last_name = test_data($_POST['last_name']); 
-		$middle_name = test_data($_POST['middle_name']); 
+		$first_name = test_data($_POST['first_name']);$last_name = test_data($_POST['last_name']);
+		$middle_name = test_data($_POST['middle_name']);
 		if(isset($_POST['gender']))
 			$gender = test_data($_POST['gender']);
 		$dob = test_data($_POST['dob']); $regId = test_data($_POST['regId']);
 		if(isset($_POST['adyear']))
-			$adyear = test_data($_POST['adyear']); 
+			$adyear = test_data($_POST['adyear']);
 		if(isset($_POST['branch']))
 			$branch = test_data($_POST['branch']);
 		if(isset($_POST['year']))
-			$year=test_data($_POST['year']); 
-		$className = test_data($_POST['hiddenInp']); 
-		$classNum = test_data($_POST['classNum']);$tenth=test_data($_POST['tenth']); 
+			$year=test_data($_POST['year']);
+		$className = test_data($_POST['hiddenInp']);
+		$classNum = test_data($_POST['classNum']);$tenth=test_data($_POST['tenth']);
 		if(isset($_POST['twelthM']))
 			$twelth=test_data($_POST['twelthM']);
 		if(isset($_POST['deplomaM']))
-			$deploma = test_data($_POST['deplomaM']); 
+			$deploma = test_data($_POST['deplomaM']);
 		$email = test_data($_POST['email']);$password = test_data($_POST['password']);
-		$password_confirm = test_data($_POST['password_confirm']);$contact = test_data($_POST['contact']); 
-		$add = test_data($_POST['add']);  
+		$password_confirm = test_data($_POST['password_confirm']);$contact = test_data($_POST['contact']);
+		$add = test_data($_POST['add']);
 		$sem1=test_data($_POST['sem1']); $sem2=test_data($_POST['sem2']);
-		$sem3=test_data($_POST['sem3']); $sem4=test_data($_POST['sem4']); $sem5=test_data($_POST['sem5']); $sem6=test_data($_POST['sem6']); 
+		$sem3=test_data($_POST['sem3']); $sem4=test_data($_POST['sem4']); $sem5=test_data($_POST['sem5']); $sem6=test_data($_POST['sem6']);
 		$eCurri = test_data($_POST['eCurri']);
 		$coCurri = test_data($_POST['coCurri']);
 		$gapAnswer = $_POST['yearGap'];
-		
-		
-		if(!empty($first_name) && !empty($last_name) && !empty($middle_name) && !empty($gender) && !empty($dob) && !empty($regId) && 
-			!empty($adyear) && !empty($branch) && !empty($year) && !empty($className) && !empty($classNum)  && !empty($tenth) && 
+
+
+		if(!empty($first_name) && !empty($last_name) && !empty($middle_name) && !empty($gender) && !empty($dob) && !empty($regId) &&
+			!empty($adyear) && !empty($branch) && !empty($year) && !empty($className) && !empty($classNum)  && !empty($tenth) &&
 			!empty($email) && !empty($password) && !empty($password_confirm) && !empty($contact) && !empty($add) && !empty($eCurri) && !empty($coCurri) )
-		 {	 
+		 {
 		 	 $flag1=0; $flag2 = 0;$checkCount = 0;$twelthM = -1;$deplomaM = -1;
-		 	 $sem1M = -1; $sem2M = -1; $sem3M = -1; $sem4M = -1; $sem5M = -1; $sem6M = -1; 
+		 	 $sem1M = -1; $sem2M = -1; $sem3M = -1; $sem4M = -1; $sem5M = -1; $sem6M = -1;
 		 	 $aggreFirst = -1;$aggreSecond = -1;$aggreThird = -1;
 
 			 if($year==1)
 			 {
 				 if(!isset($_POST['check-deploma']) && !empty($sem1) && !empty($sem2) ){
 				 	$flag1++;
-				 	$sem1M = $sem1; $sem2M = $sem2;	
+				 	$sem1M = $sem1; $sem2M = $sem2;
 				 	$aggreFirst = ($sem1M + $sem2M)/2;
 				 }
 				 else if(isset($_POST['check-deploma'])){
@@ -72,17 +72,17 @@
 			 else if($year==2)
 			 {
 				 if(!isset($_POST['check-deploma']) && !empty($sem1) && !empty($sem2) && !empty($sem3) && !empty($sem4))
-				 {  
+				 {
 				 	$flag1++;
 				 	$sem1M = $sem1; $sem2M = $sem2; $sem3M = $sem3; $sem4M = $sem4;
 				 	$aggreFirst = ($sem1M + $sem2M)/2;
 				 	$aggreSecond = ($sem3M + $sem4M)/2;
 				 }
 				 else if(isset($_POST['check-deploma']) && !empty($sem3) && !empty($sem4))
-				 {	
+				 {
 				 	$flag1++;
 				 	$sem3M = $sem3; $sem4M = $sem4;
-				 	$aggreSecond = ($sem3M + $sem4M)/2;	
+				 	$aggreSecond = ($sem3M + $sem4M)/2;
 				 }
 			 }
 			 elseif($year==3)
@@ -90,22 +90,22 @@
 				  if(!isset($_POST['check-deploma']) && !empty($sem1) && !empty($sem2) && !empty($sem3) && !empty($sem4) && !empty($sem5)){
 				  		$flag1++;
 				  		$sem1M = $sem1; $sem2M = $sem2; $sem3M = $sem3; $sem4M = $sem4; $sem5M = $sem5;
-				  		 
+
 				 		$aggreFirst = ($sem1M + $sem2M)/2;
 				 		$aggreSecond = ($sem3M + $sem4M)/2;
 				 		$counter = 5;
 				  		if(isset($_POST['sem6'])){
 				  			$sem6M = $sem6;
-				  		}  
-				  } 
+				  		}
+				  }
 				  else if(isset($_POST['check-deploma']) && !empty($sem3) && !empty($sem4) && !empty($sem5)){
 				  		$flag1++;
-				  		$sem3M = $sem3; $sem4M = $sem4; $sem5M = $sem5; 
+				  		$sem3M = $sem3; $sem4M = $sem4; $sem5M = $sem5;
 				 		$aggreSecond = ($sem3M + $sem4M)/2;
 				 		if(isset($_POST['sem6'])){
-				  			$sem6M = $sem6; 
-				  		}  
-				  } 
+				  			$sem6M = $sem6;
+				  		}
+				  }
 			 }
 			 $gapFlag = 0;
 			 $gapSelect = -1;
@@ -138,7 +138,7 @@
 			 		$deplomaM = test_data($deploma);
 			 	}
 			 }
-			
+
 
 
 			 if($checkCount != 0)
@@ -177,7 +177,7 @@
 													{
 														$row = mysqli_fetch_array($re,MYSQLI_ASSOC);
 														$id = $row[$idTerm];
-														
+
 														$queryForInsertion = "INSERT INTO `login-table` (email,pass,branch,id) VALUES('$email','$password','$branch','$id')";
 														if($result = mysqli_query($conn,$queryForInsertion))
 														{
@@ -186,7 +186,7 @@
 															<script>
 																alert("Done!!");
 															</script>
-<?php	
+<?php
 														}else
 														{
 															echo mysqli_error($conn);
@@ -204,7 +204,7 @@
 													<script>
 														alert("Some error occurred");
 													</script>
-<?php	
+<?php
 												}
 										}
 										else
@@ -213,7 +213,7 @@
 												<script>
 													alert("The email id or registration is already registered");
 												</script>
-<?php																				
+<?php
 										}
 									}
 									else
@@ -228,7 +228,7 @@
 									<script>
 										alert("Enter a valid email id");
 									</script>
-<?php	 
+<?php
 								}
 //----------------------------------------------------------------6---------------------------------------------------------//
 							}
@@ -238,7 +238,7 @@
 								<script>
 									alert("Passwords must be atleast 6 characters long");
 								</script>
-<?php	
+<?php
 							}
 //--------------------------------------------------------5------------------------------------------------------------
 						}
@@ -248,7 +248,7 @@
 							<script>
 								alert("The passwords do not match");
 							</script>
-<?php	
+<?php
 						}
 //------------------------------------------------------------4--------------------------------------------//
 					}
@@ -258,7 +258,7 @@
 						<script>
 							alert("Please fill out the marks for respective semesters");
 						</script>
-<?php	
+<?php
 					}
 //-----------------------------------------------------------------3------------------------------------------------------//
 				}
@@ -306,8 +306,8 @@
 	<title>Register | JNEC T&P portal</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel= "stylesheet" href = "css/bootstrap.css">
-	
-		
+
+
 	<!----------------------------------------------Function for yearwise percentages-------------------------------------------------------->
 	<script>
 			document.getElementById('register').className = "active";
@@ -327,27 +327,31 @@
 				}
 			}
 	</script>
-	
-	
+<style>
+	legend{
+		font-family: branchfont;
+	}
+</style>
+
 </head>
 <body style="background-color:#f5f5f5">
 <div id="legend" style="text-align:center">
-	<legend class="alert alert-success">Register yourself</legend>
+	<legend class="alert alert-success" style="font-family:branchfont;">Register yourself</legend>
 </div>
 	<div class="page">
-		
+
 		<div class="body" >
 				<form  class="form-vertical" action='register.php' method="POST">
-				  	
 
 
-		<!----------------------------------------------Personal Details------------------------------------------------------------>	
-			
+
+		<!----------------------------------------------Personal Details------------------------------------------------------------>
+
 
 			<br/>
-			<legend class="text text-primary">Personal Details</legend>	
-			<div class="well" style="background-color:white;">			
-						
+			<legend class="text text-primary">Personal Details</legend>
+			<div class="well" style="background-color:white;">
+
 						<div style="margin-bottom:3em;">
 						</div>
 
@@ -357,15 +361,15 @@
 							<input type="text"  name="first_name" value="<?php if(isset($_POST['first_name'])) echo $_POST['first_name'];?>" placeholder="" class="form-control">
 						  </div>
 						</div>
-					   
-						
+
+
 						<div class="form-group">
 							<div class="col-xs-4">
 						  		<label >Father's Name: </label>
 								<input type="text"  name="middle_name" value="<?php if(isset($_POST['middle_name'])) echo $_POST['middle_name'];?>" placeholder="" class="form-control">
 							</div>
 						</div>
-					
+
 						<div class="form-group">
 						 <div class="col-xs-4">
 							<label >Last Name: </label>
@@ -391,16 +395,16 @@
 							<input type="date" name="dob" value="<?php if(isset($_POST['dob'])) echo $_POST['dob'];?>" placeholder="" class="form-control">
 						  </div>
 						</div>
-		
+
 		</div>
 
 <!----------------------------------------------Educational Details------------------------------------------------------------>
 	<br/>
-	<legend class="text text-primary">Educational details</legend>		
+	<legend class="text text-primary">Academic details</legend>
 			<div class="well" style="background-color:white">
-			
-						
-						<div class="form-group"> 
+
+
+						<div class="form-group">
 						  <label >Registration Id:</label>
 							<input type="text" class="form-control" name="regId" value="<?php if(isset($_POST['regId'])) echo $_POST['regId'];?>"/>
 						</div>
@@ -420,11 +424,11 @@
 							</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 						  <div class="col-md-6">
 							<label class="control-label">Branch</label>
-							<select class="form-control" id="element_3" name="branch"> 
+							<select class="form-control" id="element_3" name="branch">
 								<option  selected="selected" value="" disabled selected>--Select branch-- </option>
 								<option value="CIVIL" >CIVIL</option>
 								<option value="MECHANICAL" >MECHANICAL</option>
@@ -440,8 +444,8 @@
 							</select>
 						  </div>
 						</div>
-						
-						
+
+
 
 						<div class="form-group">
 						  <div class="col-md-6">
@@ -459,13 +463,13 @@
 								<input type="text" class="form-control" value="<?php if(isset($_POST['sem4'])) echo $_POST['sem4'];?>" id='s4' name="sem4" style="display:none;" placeholder="Semester 4">
 								<input type="text" class="form-control" value="<?php if(isset($_POST['sem5'])) echo $_POST['sem5'];?>" id='s5' name="sem5" style="display:none;" placeholder="Semester 5 ">
 								<input type="text" class="form-control" value="<?php if(isset($_POST['sem6'])) echo $_POST['sem6'];?>" id='s6' name="sem6" style="display:none;" placeholder="Semester 6 (optional)">
-								
+
 								</div>
 						  </div>
 						</div>
 
 
-						
+
 						<div class="form-group">
 						  <br/>
 						  <div class="col-md-6">
@@ -478,11 +482,11 @@
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
-								
+
 							</select>
 							</div>
 						</div>
-						
+
 
 						<div class="form-group" style="margin-top:13%">
 						    <label class="col-md-12" >Any year gap? </label>
@@ -511,8 +515,8 @@
 						    <label class="col-md-12" >10th Marks:</label>
 							<input step="any" type="number"  placeholder="Enter percentage" class="form-control" name="tenth" value="<?php if(isset($_POST['tenth'])) echo $_POST['tenth'];?>">
 						 </div>
-						
-						
+
+
 						<div class="form-group">
 						  <label class="control-label" for="email">12th Marks</label>
 						  <div class="controls">
@@ -532,11 +536,11 @@
 							<input type="number" name="deplomaM" class="form-control" placeholder = "Enter percentage">
 
 						</div>
-	
-	
+
+
 				</div>
 
-<!----------------------------------------------Conatact Details------------------------------------------------------------>		
+<!----------------------------------------------Conatact Details------------------------------------------------------------>
 	<br/>
 	<legend class="text text-primary">Contact details</legend>
 		<div class="well" style="background-color:white">
@@ -546,7 +550,7 @@
 							<input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" placeholder="" cclass="form-control" >
 						  </div>
 						</div>
-					 
+
 						<div class="form-group">
 						  <label class="control-label" for="password">Password</label>
 						  <div class="controls">
@@ -554,7 +558,7 @@
 							<p class="help-block">Password should be at least 6 characters</p>
 						  </div>
 						</div>
-					 
+
 						<div class="form-group">
 						  <!-- Password -->
 						  <label class="control-label"  for="password_confirm">Password (Confirm)</label>
@@ -563,15 +567,15 @@
 							<p class="help-block">Please confirm password</p>
 						  </div>
 						</div>
-						
+
 						<div class="form-group">
 						  <label class="control-label">Contact number</label>
 						  <div class="controls">
 							<input type="number"  class="form-control" name="contact" value="<?php if(isset($_POST['contact'])) echo $_POST['contact'];?>" placeholder="" >
 						  </div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 						  <!-- E-mail -->
 						  <label class="control-label">Permanent address</label>
@@ -579,24 +583,24 @@
 							<textarea name="add"  rows="5" cols="40" placeholder="" class="input-xlarge form-control"> <?php if(isset($_POST['add'])) echo $_POST['add'];?></textarea>
 						  </div>
 						</div>
-					 
-							
+
+
 				</div>
 
 
 
 
-				<!----------------------------------------------Misc Details------------------------------------------------------------>		
+				<!----------------------------------------------Misc Details------------------------------------------------------------>
 	<br/>
 	<legend class="text text-primary">Other details</legend>
 		<div class="well" style="background-color:white">
-		
+
 			<div class="form-group ">
 				<label class="control-label">Extra curricular Activities</label>
 					<div class="controls">
 							<textarea name="eCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['eAct'])) echo $_POST['eAct'];?></textarea>
 					</div>
-			</div>		
+			</div>
 
 			<br/>
 
@@ -605,21 +609,21 @@
 					<div class="controls">
 							<textarea name="coCurri"  rows="4" cols="30" placeholder="" class="form-control "> <?php if(isset($_POST['coAct'])) echo $_POST['coAct'];?></textarea>
 					</div>
-			</div>	
+			</div>
 			<div class="form-group">
 					<div class="controls" style="height:5%">
 				 			<input type="submit" name="sbt-btn" style="height:150%" class="btn btn-lg btn-primary col-md-offset-4 col-md-3" value="Register" />
 					</div>
-			</div>	
-		</div>	
+			</div>
+		</div>
 	</form>
 
 		<script type="text/javascript" src="js/jquery.js"></script>
 	<script  type="text/javascript" src="js/jquery-js.js"></script>
 
-		<!----------------------------------------------Footer------------------------------------------------------------>		
+		<!----------------------------------------------Footer------------------------------------------------------------>
 
-	
+
 	</div>
 </body>
 </html>

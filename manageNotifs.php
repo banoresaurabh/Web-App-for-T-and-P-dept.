@@ -11,16 +11,11 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 	if(isset($_POST['sbt-btn'])){
 		if(!empty($_POST['cname'])){
 			$cname = $_POST['cname'];
-			$query = "insert into company (cname) values('$cname')";
-			$query2 = "insert into company_wise_count(company, count) values('$cname',0)";
-			try {
-				mysqli_query($conn,$query2);
-			} catch (Exception $e) {
-				echo "Some error occurred while adding new company please report it to the web master";
-			}
+			$query = "insert into notifs (message) values('$cname')";
+
 
 			if($res = mysqli_query($conn,$query)){
-				echo "<div class='alert alert-success' style='text-align:center;'>'$cname' inserted successfully</div>";
+				echo "<div class='alert alert-success' style='text-align:center; border-bottom:0%;'> updated successfully</div>";
 			}else{
 
 				echo "<div class='alert alert-danger' style='text-align:center;'>Some error occurred. Check whether the company you entered already exixts in the table. </div>";
@@ -29,7 +24,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 		else{
 			?>
 			<script>
-				alert('Enter the name of the company!!')
+				alert('Please enter some text!!')
 			</script>
 			<?php
 		}
@@ -53,7 +48,8 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 		<div class="list-group col-md-3">
 			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
-			<a href="edit-home.php" class="list-group-item ">Change homepage contents</a>
+			<a href="edit-home.php" class="list-group-item ">Manage nofications</a>
+      <a href="comp-list.php" class="list-group-item ">Update company list</a>
 			<a href="update-placed.php" class="list-group-item ">Placements</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
 			<a href="logout.php" class="list-group-item ">Logout</a>
@@ -61,47 +57,43 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 		<div class = "col-md-offset-3" >
 			<div  class="panel panel-default">
-				<div class="panel panel-heading"><h2 class="text text-primary" style="margin-left:25%">Update Company list</h2>
+				<div class="panel panel-heading"><h2 class="text text-primary" style="margin-left:25%">Manage Notifications</h2>
 
 				</div>
 
 				<div class="panel-body">
 					<?php
-						$query = "select * from company";
+						$query = "select * from notifs";
 						if($result = mysqli_query($conn,$query)){
 							if(mysqli_num_rows($result) <= 0){
-
-								echo "<div class='alert alert-danger'>No companies till now!!</div>";
+								echo "<div class='alert alert-danger'>No Notifications till now!!</div>";
 							}
 							else{
 							?>
-
 									<table class = "table table-striped">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Company name</th>
-												<th>Action</th>
+												<th>Notification</th>
+                        <th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
 
-
-
 							<?php
-							$i = 1;
+              $i = 1;
 							while($row= mysqli_fetch_array($result,MYSQLI_ASSOC)){
 								$id = $i;
-								$idReal = $row['cid'];
-								$cname = $row['cname'];
+                $idReal = $row['notif_id'];
+								$cname = $row['message'];
 								echo '<tr>';
 								echo '
-									<td>'.$id.'</td>
-									<td>'.$cname.'</td>
-									<td><a href="compDeleter.php?id='.$idReal.'"><button class="btn btn-primary">Remove</button></a></td>
-									';
-
+                    <td>'.$id.'</td>
+                    <td>'.$cname.'</td>
+                    <td><a href="notifDeleter.php?id='.$idReal.'"><button class="btn btn-primary">Delete</button></a></td>
+                    ';
 								echo '</tr>';
+                $i++;
 							}
 							echo '</tbody>
 								</table>';
@@ -109,11 +101,11 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 								?>
 								<hr/>
 								<br/>
-								<h4 style="margin-left:1%">Add new company</h4>
-								<form method="POST" action="comp-list.php">
+								<h4 style="margin-left:1%">Add new Notifications</h4>
+								<form method="POST" action="manageNotifs.php">
 									<div class="form-group">
 										<div class="">
-											<input type="text" name="cname" class="form-control" placeholder="Enter Company name" />
+											<input type="text" name="cname" class="form-control" placeholder="Enter notification" />
 										</div>
 										<br/>
 										<button class="btn btn-danger" name="sbt-btn" >Add</button>
