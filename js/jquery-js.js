@@ -108,11 +108,3 @@ $(document).ready(function($){
 	});
 });
 
-//---------------------- For taking branch at runtime------------------------//
-
-$(document).ready(function(){
-	$("#comp").change(function(){
-		 compVal = document.getElementById('comp').value;
-		 alert(compVal);
-	});
-});

@@ -7,7 +7,7 @@
 		function encrypto($data){
 					$arr = array('BIOTECH'=>"3090",'CHEMICAL'=>"3091",'CIVIL'=>"3092",'CSE'=>"3093",'E&TC'=>"3094",'EEP'=>"3095",'INSTRUMENTATION'=>"3096",'IT'=>"3097",'MECHANICAL'=>"3098");
 					return $arr[$data];
-		}	
+		}
 		require "navbar.php";
 	?>
 
@@ -18,13 +18,14 @@
 		<title>Admin - JNEC T&P portal</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 		<link rel= "stylesheet" href = "css/bootstrap.css">
+
 	</head>
 
 	<body style="background-color:#f5f5f5" >
 		<div class="page">
-			
+
 			<div class="body" style="margin-top:2%;">
-			
+
 			<div class="list-group col-md-3">
 				<a href="admin-profile.php" class="list-group-item active">Search Students</a>
 				<a href="edit-home.php" class="list-group-item ">Change homepage contents</a>
@@ -36,16 +37,12 @@
 			<div class = "col-md-offset-3" >
 				<div  class="panel panel-default">
 					<div class="panel panel-heading"><h2 class="text text-primary" style="margin-left:20%">Update the list of placed students</h2>
-					
+
 					</div>
 
 					<div class="panel-body">
-						
+
 							<form action="update-placed.php" method="post">
-								
-								
-							
-								
 								
 								<div class="form-group">
 									<label>Select year<sup style="color:red;">*</sup></label>
@@ -68,7 +65,7 @@
 									</select>
 								</div>
 
-								
+
 								<button class="btn btn-primary" name="sbt-btn" col-md-offset-5">Search</button>
 								</form>
 								<hr/>
@@ -81,7 +78,7 @@
 											$classNum = $_POST['classNum'];
 											$query = "select * from $branch where classNum = '$classNum' and className = '$className'";
 											if($result = mysqli_query($conn,$query)){
-												
+
 												$count = mysqli_num_rows($result);
 												if($count == 0)
 												{
@@ -92,7 +89,7 @@
 												else
 												{
 													?>
-												
+
 								<div class="info">
 								<form action="updater.php" method="POST">
 									<table class="table">
@@ -106,12 +103,12 @@
 							                       </tr>
 							                          </thead>
 													   <tbody>
-													   <?php 
-														  
+													   <?php
+
 							                        $i=0;
 							                        $idTerm = "id_".strtolower($branch);
 							                         while($row= mysqli_fetch_array($result,MYSQLI_ASSOC)){
-														 
+
 												$reg = $row['regid'];
 												$id = $row[$idTerm];
 												$first_name = $row['first_name'];
@@ -122,13 +119,13 @@
 
 												$brDos = encrypto($branch);
 
-														 
+
 															 echo '<tr>
-																   <td ><a href="profile.php?uno='.$id.'&dos='.$brDos.'" target="_blank">'.$reg.'</a></td> 
+																   <td ><a href="profile.php?uno='.$id.'&dos='.$brDos.'" target="_blank">'.$reg.'</a></td>
 																  <td>'.$first_name.'</td>
 																  <td>'.$last_name.'</td>
 																  <td>'.$classFinal.'</td>
-																  <td> 
+																  <td>
 																  <input type="hidden" name="realID[]" value="'.$id.'">
 																  <input type="hidden" name="realFname[]" value="'.$first_name.'">
 																	  <select id="comp" name="compReal[]" class="form-control" >
@@ -136,24 +133,24 @@
 																			';
 																			$query = 'select * from company';
 																			$compRes = mysqli_query($conn,$query);
-																			
+
 																			while($compRow = mysqli_fetch_array($compRes,MYSQLI_ASSOC)){
 																				echo '<option value="'.$compRow['cname'].'">'.$compRow['cname'].'</option>';
 																			}
 
 //'.$id.','.$i.',"'.$branch.'",compVal
 																			echo '
-																			
+
 																		</select>
-																  </td> 
-																  
-															</tr> 
+																  </td>
+
+															</tr>
 															<div style="display:none;" class="alert alert-danger" id="result"/>
 															';
 														 $i++;
-														 
+
 													  }
-													  
+
 ?>
 							                          </tbody>
 			                      </table>
@@ -172,23 +169,23 @@
 										{
 											?>
 												<script>
-													alert("Please select a branch");
+													alert("Please select select the class");
 												</script>
-											<?php	
+											<?php
 										}
 									}
 								?>
 
-							
-							
-					</div>	
-					
+
+
+					</div>
+
 				</div>
 			</div>
-			<!----------------------------------------------Footer------------------------------------------------------------>		
+			<!----------------------------------------------Footer------------------------------------------------------------>
 
 			<div class="footer">
-						
+
 				<script type="text/javascript" src="js/jquery.js"></script>
 				<script type="text/javascript" src="js/jquery-js.js"></script>
 				<script type="text/javascript" src="pmdata.js"></script>

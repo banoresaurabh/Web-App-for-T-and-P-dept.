@@ -247,7 +247,7 @@ if(loggedin() or adminloggedin())
 		<div class="footer">
 			
 		
-			<script type="text/javascript" src="js/jquery.js"></script>
+			<script type="text/javascript" src="js/jquery.min.js"></script>
 			<script type="text/javascript" src="js/jquery-js.js"></script>
 		</div>
 	</div>
