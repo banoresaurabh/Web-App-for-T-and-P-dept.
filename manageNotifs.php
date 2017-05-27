@@ -15,7 +15,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 
 			if($res = mysqli_query($conn,$query)){
-				echo "<div class='alert alert-success' style='text-align:center; border-bottom:0%;'> updated successfully</div>";
+				echo "<div class='alert alert-success' style='text-align:center; margin-bottom:0%;'>updated successfully</div>";
 			}else{
 
 				echo "<div class='alert alert-danger' style='text-align:center;'>Some error occurred. Check whether the company you entered already exixts in the table. </div>";
@@ -48,7 +48,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 		<div class="list-group col-md-3">
 			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
-			<a href="edit-home.php" class="list-group-item ">Manage nofications</a>
+			<a href="#" class="list-group-item ">Manage nofications</a>
       <a href="comp-list.php" class="list-group-item ">Update company list</a>
 			<a href="update-placed.php" class="list-group-item ">Placements</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
@@ -74,8 +74,8 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Notification</th>
-                        <th>Action</th>
+												<th style="font-family: 'Open Sans', sans-serif;">Notification</th>
+                        <th style="font-family: 'Open Sans', sans-serif;">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -89,8 +89,8 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 								echo '<tr>';
 								echo '
                     <td>'.$id.'</td>
-                    <td>'.$cname.'</td>
-                    <td><a href="notifDeleter.php?id='.$idReal.'"><button class="btn btn-primary">Delete</button></a></td>
+                    <td style="font-family: \'Open Sans\', sans-serif;">'.$cname.'</td>
+                    <td><a href="notifDeleter.php?id='.$idReal.'"><button class="btn btn-primary">Remove</button></a></td>
                     ';
 								echo '</tr>';
                 $i++;
@@ -101,7 +101,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 								?>
 								<hr/>
 								<br/>
-								<h4 style="margin-left:1%">Add new Notifications</h4>
+								<h4 style="margin-left:1%;font-family: 'Open Sans', sans-serif;">Add new Notifications</h4>
 								<form method="POST" action="manageNotifs.php">
 									<div class="form-group">
 										<div class="">

@@ -1,6 +1,7 @@
 <?php
-	require "core.inc.php";
-	require "connection.php";
+require "core.inc.php";
+$theBRArr = array('3090','3091','3092','3093','3094','3095','3096','3097','3098');
+$colorArr = array('#FFB736','#49BDAA','#4155B4','#42729B','#7DC57C','#E15554','#00E5FF','#FF8000','#F4C4D5');
 
 	function encrypto($data){
 		$arr = array("3090"=>'BIOTECH',"3091"=>'CHEMICAL',"3092"=>'CIVIL',"3093"=>'CSE',"3094"=>'E&TC',"3095"=>'EEP',"3096"=>'INSTRUMENTATION',"3097"=>'IT',"3098"=>'MECHANICAL');
@@ -16,23 +17,20 @@
 		return $data;
 	}
 
-if(loggedin() or adminloggedin())
+if(loggedin() or adminloggedin() and isset($_GET['uno']) && !empty($_GET['uno']) && isset($_GET['dos']) && !empty($_GET['dos']) && in_array($_GET['dos'],$theBRArr))
 {
-	if(isset($_GET['uno']) && isset($_GET['dos']))
-	{
 		if(adminloggedin() || $_SESSION['id'] == $_GET['uno'])
 		{
-			$id = $_GET['uno'];
+			$id = $_SESSION['id'];
 			$br = encrypto($_GET['dos']);
-			
 			$idTerm = "id_".strtolower($br);
 			$query = "SELECT * FROM $br WHERE $idTerm = '$id'";
 			$result = mysqli_query($conn,$query);
-			
-				
+
+
 	//$query2 = "SELECT `email` FROM `login-table` WHERE `id` = '$id'";
 	if(mysqli_num_rows($result) == 1)
-	{	
+	{
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$first_name = $row['first_name'];
 		$email = $row['email'];
@@ -60,13 +58,13 @@ if(loggedin() or adminloggedin())
 		$aggreFirst = $row['aggreFirst'];
 		$aggreSecond = $row['aggreSecond'];
 		$aggreThird = $row['aggreThird'];
-		$placed = $row['placed'];		
+		$placed = $row['placed'];
 	}
 	else
 	{
 ?>
 					<script type="text/javascript">
-						//window.location = "404.html";
+						window.location = "404.html";
 					</script>
 <?php
 	}
@@ -85,7 +83,7 @@ if(loggedin() or adminloggedin())
 	<title> <?php echo $first_name." ".$last_name ?> | JNEC T&P portal</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel= "stylesheet" href = "css/bootstrap.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>   
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<style type="text/css">
 		.forFont{
 			font-family: 'Open Sans', sans-serif;
@@ -98,17 +96,22 @@ if(loggedin() or adminloggedin())
 
 
 <body style="background-color:#f5f5f5">
-	
-	<div class="page" style="width:1100px;">	
+
+	<div class="page" style="width:1100px;">
 		<div class="body">
-		
-		<div class="list-group col-md-3" style="margin-right:0em;">
+<?php
+	if(loggedin())
+	{
+?>
+		<div class="list-group col-md-3" style="margin-right:0em; display:block;">
 			<a href="admin-profile.php" class="list-group-item active">My profile</a>
 			<a href="update-pro.php" class="list-group-item ">Update profile</a>
 			<a href="change-password.php" class="list-group-item ">Change password</a>
 			<a href="logout.php" class="list-group-item ">Logout</a>
 		</div>
-
+<?php
+	}
+?>
 
 		<div class="col-md-offset-3 " style="background-color:white; margin-top: 4em; ">
 		<hr style="height:10px; background: repeating-linear-gradient(
@@ -120,7 +123,7 @@ if(loggedin() or adminloggedin())
 		);"
 		/>
 		<div class="head-info col-md-8">
-			<h1 class="forFont"><?php echo $first_name ." ".$last_name ?></h1> 
+			<h1 class="forFont"><?php echo $first_name ." ".$last_name ?></h1>
 			<div>
 				<p class="forFont text text-muted" style="font-size: 1.2em;"><?php echo "(".$regID.")" ?></p>
 				<p class="forFont text text-muted" style="font-size: 1.2em; line-height:0px;"><?php $br = ucfirst(strtolower($br)); echo $br." ".$className."-".$classNum; ?></p>
@@ -132,10 +135,10 @@ if(loggedin() or adminloggedin())
 			<img src="dummy.png" height="150" width="150" style="border:0.1em solid white;margin-top:1em;">
 		</div>
 			<hr style="margin-top:4em;">
-			
+
 			<div style="margin:2em;">
-				
-				
+
+
 				<h3 class="text text-primary ">Academic details </h3>
 
 				<table  style="margin-top:2em;" class="table table-striped">
@@ -164,7 +167,7 @@ if(loggedin() or adminloggedin())
 				    </tr>
 				  </tbody>
 				</table>
-				
+
 
 				<table  style="margin-top:3em;" class="table table-striped">
 				  <thead>
@@ -237,16 +240,16 @@ if(loggedin() or adminloggedin())
 					<span class="forFont"><?php echo $co ?> </span>
 				</div>
 				<br/> <br/> <br/>
-			</div>	
-		</div>	
+			</div>
+		</div>
 		</div>
 
 
-		<!----------------------------------------------Footer------------------------------------------------------------>		
+		<!----------------------------------------------Footer------------------------------------------------------------>
 
 		<div class="footer">
-			
-		
+
+
 			<script type="text/javascript" src="js/jquery.min.js"></script>
 			<script type="text/javascript" src="js/jquery-js.js"></script>
 		</div>
@@ -258,14 +261,10 @@ if(loggedin() or adminloggedin())
 	{
 		header('Location:404.php');
 	}
-}
-	else
-	{
-		header('Location:404.php');
-	}
+
 }
 else
 {
 	header('Location:login.php');
-}	
+}
 ?>

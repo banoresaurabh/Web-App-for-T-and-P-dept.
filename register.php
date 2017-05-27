@@ -1,19 +1,6 @@
 <?php
 	require "core.inc.php";
-//-----------------------------------The goddamn connection ----------------------------------------------------------//
-/*
 
-	$host = "localhost";
-	$user = "root";
-	$pass = "";
-	$db = "t_and_p";
-	global $conn;
-	if($conn = new mysqli($host,$user,$pass,$db))
-	{
-
-	}
-*/
-//---------------------------------------------------------------------------------------------------------------------//
 	function test_data($data){
 		$data = trim($data);
 		//$data = mysqli_real_escape_string($conn,$data);
@@ -293,6 +280,7 @@
 <?php
 		}
 	}
+
 	require "navbar.php";
 ?>
 
@@ -487,9 +475,8 @@
 							</div>
 						</div>
 
-
 						<div class="form-group" style="margin-top:13%">
-						    <label class="col-md-12" >Any year gap? </label>
+						    <label class="col-md-2" >Any year gap? </label>
 						    <div style="margin-left:2%">
 								Yes: <input  type="radio" class="comm" id="gap" name="yearGap" value="1"> &nbsp &nbsp &nbsp
 								No: <input  type="radio" name="yearGap"  class="comm" value="0">
@@ -510,7 +497,7 @@
 							</div>
 						</div>
 
-
+						<br/>
 						<div class="form-group" style="margin-top:1%">
 						    <label class="col-md-12" >10th Marks:</label>
 							<input step="any" type="number"  placeholder="Enter percentage" class="form-control" name="tenth" value="<?php if(isset($_POST['tenth'])) echo $_POST['tenth'];?>">

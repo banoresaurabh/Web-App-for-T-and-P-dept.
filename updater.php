@@ -2,13 +2,13 @@
 	require "core.inc.php";
 	if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 	{
-<<<<<<< HEAD
 		$branch = $_SESSION['branchM'];
-
-		if(isset($_POST['compReal']) && count($_POST['compReal']) > 0){
+		if(isset($_POST['compReal']) && count($_POST['compReal']) > 0)
+		{
 			$i = 0;
 			$idTerm = "id_".strtolower($branch);
-			while ($i < count($_POST['compReal'])) {
+			while ( $i < count($_POST['compReal'])) 
+			{
 				if(isset($_POST['compReal'][$i]) && !empty($_POST['compReal'][$i])){
 					$comp = $_POST['compReal'][$i];
 					$id = $_POST['realID'][$i];
@@ -49,8 +49,8 @@
 							} catch (Exception $e) {
 								echo "Oops something went wrong please report it to the Webmaster !!";
 							}
-
-						}else{
+						
+					}else{
 							echo mysqli_error($conn);
 							echo "Oops something Went wrong for email!!";
 						}
@@ -59,38 +59,26 @@
 								setTimeout(1000,alert("Records updated successfully"));
 							</script>
 						<?php
-						//header('Location:update-placed.php');
+						header('Location:update-placed.php');
 					}
 					$i++;
 				}
-						}
-					}else{
-			?>
+			
+			}
+		}
+		else
+		{
+?>
 				<script>
 					alert("Please enter all the detais");
-					location.href = "update-placed.php"
+					location.href = "update-placed.php";
 				</script>
-			<?php
-=======
-		$numberName = count($_POST["name"]);
-		$numberComp = count($_POST["comp"]);
-		if($numberName > 1 && $numberComp > 1){
-			for($i = 0; $ $i < $numberName; $i++){
-				if(trim($_POST["name"][$i]) != ''){
-
-				}else{
-					
-				}
-			}
-		}else{
-			echo "Please Enter the name "
->>>>>>> master
+<?php
 		}
-	}else{
+			
+	}
+	else
+	{
 		header('Location:404.html');
 	}
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> master

@@ -59,7 +59,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 							if( isset($_POST['hsc']) && $_POST['hsc'] != "other"){
 								$hsc = $_POST['hsc'];
 								if(!empty($hsc))
-									$query = $query." `hsc` >= '".$hsc."' AND";
+									$query = $query." `twelthM` >= '".$hsc."' AND";
 							}elseif (isset($_POST['hsc']) && $_POST['hsc'] == "other" && !empty($_POST['otherHSC'])) {
 								$hsc = $_POST['otherHSC'];
 								$query = $query." `twelthM` >= '".$hsc."' AND";
@@ -70,7 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', end
 							if( isset($_POST['deploma']) && $_POST['deploma'] != "other"){
 								$deploma = $_POST['deploma'];
 								if(!empty($deploma))
-									$query = $query." `deploma` >= '".$deploma."' AND";
+									$query = $query." `deplomaM` >= '".$deploma."' AND";
 							}elseif (isset($_POST['deploma']) && $_POST['deploma'] == "other" && !empty($_POST['otherDeploma'])) {
 								$deploma = $_POST['otherDeploma'];
 								$query = $query." `deplomaM` >= '".$deploma."' AND";

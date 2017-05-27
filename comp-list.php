@@ -20,7 +20,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 			}
 
 			if($res = mysqli_query($conn,$query)){
-				echo "<div class='alert alert-success' style='text-align:center;'>'$cname' inserted successfully</div>";
+				echo "<div class='alert alert-success' style='text-align:center;margin-bottom:0%;'>'$cname' inserted successfully</div>";
 			}else{
 
 				echo "<div class='alert alert-danger' style='text-align:center;'>Some error occurred. Check whether the company you entered already exixts in the table. </div>";
@@ -51,13 +51,14 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 
 		<div class="body" style="margin-top:2%;">
 
-		<div class="list-group col-md-3">
-			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
-			<a href="edit-home.php" class="list-group-item ">Change homepage contents</a>
-			<a href="update-placed.php" class="list-group-item ">Placements</a>
-			<a href="change-password.php" class="list-group-item ">Change password</a>
-			<a href="logout.php" class="list-group-item ">Logout</a>
-		</div>
+			<div class="list-group col-md-3">
+				<a href="admin-profile.php" class="list-group-item active">Search Students</a>
+				<a href="manageNotifs.php" class="list-group-item ">Manage nofications</a>
+	      <a href="#" class="list-group-item ">Update company list</a>
+				<a href="update-placed.php" class="list-group-item ">Placements</a>
+				<a href="change-password.php" class="list-group-item ">Change password</a>
+				<a href="logout.php" class="list-group-item ">Logout</a>
+			</div>
 
 		<div class = "col-md-offset-3" >
 			<div  class="panel panel-default">
@@ -84,10 +85,8 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 												<th>Action</th>
 											</tr>
 										</thead>
+
 										<tbody>
-
-
-
 							<?php
 							$i = 1;
 							while($row= mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -102,6 +101,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 									';
 
 								echo '</tr>';
+								$i++;
 							}
 							echo '</tbody>
 								</table>';

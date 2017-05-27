@@ -6,6 +6,10 @@ if(!loggedin())
 		$arr = array('BIOTECH'=>"3090",'CHEMICAL'=>"3091",'CIVIL'=>"3092",'CSE'=>"3093",'E&TC'=>"3094",'EEP'=>"3095",'INSTRUMENTATION'=>"3096",'IT'=>"3097",'MECHANICAL'=>"3098");
 		return $arr[$data];
 	}
+	function decrypto($data){
+		$arr = array('3090'=>'BIOTECH',"3091"=>'CHEMICAL',"3092"=>'CIVIL',"3093"=>'CSE',"3094"=>'E&TC',"3095"=>'EEP',"3096"=>'INSTRUMENTATION',"3097"=>'IT',"3098"=>'MECHANICAL');
+		return $arr[$data];
+	}
 
 	function test_data($data)
 	{
@@ -16,7 +20,7 @@ if(!loggedin())
 		return $data;
 	}
 
-	
+
 	if(isset($_POST['sbt-btn']))
 	{
 		if(!empty($_POST['userID']) && !empty($_POST['pwd']))
@@ -24,10 +28,10 @@ if(!loggedin())
 			$newUID = test_data($_POST['userID']);
 			$newPWD = test_data($_POST['pwd']);
 			$newPWD = md5($newPWD);
-			
+
 			$query = " SELECT `id`,`branch` FROM `login-table` WHERE `email` = '$newUID' AND `pass` = '$newPWD'";
 			if($res = mysqli_query($conn,$query))
-			{	
+			{
 				$count = mysqli_num_rows($res);
 				if($count == 1)
 				{
@@ -39,10 +43,12 @@ if(!loggedin())
 					$result = mysqli_query($conn,$query);
 					$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 					$_SESSION['id'] = $id;
-					$_SESSION['br'] = $brE;
+					$_SESSION['br'] = $br;
 					$_SESSION['first_name'] = $row['first_name'];
 					$_SESSION['last_name'] = $row['last_name'];
 					header('LOCATION:profile.php?uno='.$id.'&dos='.$brE);
+				//	while($row = mysqli_fetch_array($result,MYSQLI_ASSOC)){}
+
 				}
 				else
 				{
@@ -91,16 +97,16 @@ if(!loggedin())
 
 <body style="background-color:#f5f5f5">
 	<div class="page">
-		
+
 		<div class="body">
 		<div class="col-sm-offset-3">
 
 			<form method="POST" action="login.php" class="form-horizontal " style="margin-top:14%" role = "form">
 				<h2 class=" alert text-info" style="margin-left:15%">Student Login</h2>
-				<div class="form-group"> 
+				<div class="form-group">
 					<label class="control-label col-sm-2" style="font-size:1.3em;"><kbd>User ID</kbd></label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control " name="userID"/> 
+						<input type="text" class="form-control " name="userID"/>
 						<span id="errorMessageUser" class="alert alert-danger" style="display:none">Please fill out this field</span>
 					</div>
 			    </div>
@@ -117,7 +123,7 @@ if(!loggedin())
 		</div>
 
 
-		<!----------------------------------------------Footer------------------------------------------------------------>		
+		<!----------------------------------------------Footer------------------------------------------------------------>
 
 		<div class="footer">
 			<script type="text/javascript" src="js/jquery.js"></script>

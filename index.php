@@ -17,32 +17,40 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Home | JNEC T&P portal</title>
+	<noscript>
+		<style>
+		#notifier{
+			display:none;
+		}
+		</style>
+	</noscript>
+	<title>Home | JNEC Training & Placements</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 	<link rel= "stylesheet" href = "css/bootstrap.css">
 
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript">
 
+	<script type="text/javascript">
+	notifier();
+	function notifier(){
+		$.ajax({
+			url:'notifSender.php',
+			type:'POST',
+			async:true,
+			success:function(theSimpleResponse){
+				document.getElementById('notifications').innerHTML = theSimpleResponse;
+			}
+		});
+	}
 		// Load the Visualization API and the corechart package.
 		google.charts.load('current', {'packages':['corechart']});
 
 		// Set a callback to run when the Google Visualization API is loaded.
 		google.charts.setOnLoadCallback(drawCompanyWiseChart);
 		google.charts.setOnLoadCallback(drawBranchWiseChart);
-		notifier();
-		function notifier(){
-			$.ajax({
-				url:'notifSender.php',
-				type:'POST',
-				async:true,
-				success:function(theSimpleResponse){
-					document.getElementById('notifications').innerHTML = theSimpleResponse;
-				}
-			});
-		}
+
 		// Callback that creates and populates a data table,
 		// instantiates the pie chart, passes in the data and
 		// draws it.
@@ -65,21 +73,23 @@
 					}
 				}
 			});
+//---------------- getJSON works asynchroneously by default so cant use the response outside the callback right now --------------//
+			/*
+					var jsonData = $.getJSON("getDataForChart.php",function(){
+						for (var i = 0; i < jsonData.responseJSON.length; i++) {
+							branchName = jsonData.responseJSON[i].branch;
+							counter = parseInt(jsonData.responseJSON[i].count);
+							dataRowArray.push([branchName,counter]);
+						}
+					});
 
-			/*var jsonData = $.getJSON("getDataForChart.php",function(){
-				for (var i = 0; i < jsonData.responseJSON.length; i++) {
-					branchName = jsonData.responseJSON[i].branch;
-					counter = parseInt(jsonData.responseJSON[i].count);
-					dataRowArray.push([branchName,counter]);
-				}
-			});*/
+					$.each(function(i,jsonData) {
+							dataRowArray.push([jsonData.responseJSON[i].branch,jsonData.responseJSON[i].count]);
+					});
+					var str = dataRowArray.toString();
+			 		alert(str);
+		 */
 
-
-			/*$.each(function(i,jsonData) {
-					dataRowArray.push([jsonData.responseJSON[i].branch,jsonData.responseJSON[i].count]);
-			});*/
-			//var str = dataRowArray.toString();
-		 //	alert(str);
 			data.addRows(dataRowArray);
 			var options={
 				'title':'Branch Wise placements ',
@@ -173,7 +183,7 @@
     				<img class="pull-right" height="50px" width="30px" style="margin-top:90%;" src="images/right.png"/>
   				</a>
 		</div>
-		<div class="alert alert-success" style="margin-bottom:0em;">
+		<div id="notifier" class="alert alert-success" style="margin-bottom:0em;">
 			<marquee id="notifications" style="font-family: 'Open Sans', sans-serif;"> </marquee>
 		</div>
 	<div class="page">
@@ -195,6 +205,10 @@ Unique in its structure, methods and goals, the college is strongly rooted in th
 			<div style="background-color:#7DC57C; margin-top:0.8em; height:5em; padding-top:0.1em; text-align:center;" class="theHeader">
 				<h2 style="font-family:branchFont">Placement statistics</h2>
 			</div>
+			<noscript style="text-align:center;">
+				<div class="alert alert-success" style="margin-bottom:0%; font-family: 'Open Sans', sans-serif;">The Google chart API is not available right now. However, it seems JavaScript is either disabled or not supported by your browser. To use charts, enable JavaScript by changing your browser options, then <a href="#">try again</a>.
+ 				</div>
+			</noscript>
 			<div class="dataForModule"  style="background-color:white;" >
 				<div id="chart_div2" class="col-md-5" style=" background-color:white;"></div>
 				<div id="chart_div" class="col-md-5" style="margin-left:3em; background-color:white;"></div>

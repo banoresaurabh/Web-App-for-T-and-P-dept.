@@ -27,7 +27,7 @@
 				
 				if($count == 1)
 				{
-					$email = $row['id'];
+					$email = $row['email'];
 					$fname = $row['fname'];
 					$_SESSION['email'] = $email;
 					$_SESSION['first_name'] = $fname;

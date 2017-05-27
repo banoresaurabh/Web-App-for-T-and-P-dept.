@@ -20,7 +20,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['branchM']))
 		<div class="body" style="margin-top:2%;">
 
 		<div class="list-group col-md-3">
-			<a href="admin-profile.php" class="list-group-item active">Search Students</a>
+			<a href="#" class="list-group-item active">Search Students</a>
 			<a href="manageNotifs.php" class="list-group-item ">Manage nofications</a>
       <a href="comp-list.php" class="list-group-item ">Update company list</a>
 			<a href="update-placed.php" class="list-group-item ">Placements</a>
